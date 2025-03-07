@@ -1,0 +1,19 @@
+logging {
+	level = "warn"
+}
+
+loki.write "loki" {
+	endpoint {
+		url = sys.env("LOKI_URL")
+
+		basic_auth {
+			username = sys.env("LOKI_BASIC_AUTH_USERNAME")
+			password = sys.env("LOKI_BASIC_AUTH_PASSWORD")
+		}
+	}
+
+	external_labels = {
+		instance = sys.env("INSTANCE"),
+		job      = "varlogs",
+	}
+}

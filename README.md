@@ -33,7 +33,7 @@ EOF
 vi .env
 
 # verify config
-alloy fmt config.alloy
+alloy fmt *.alloy
 ```
 
 
@@ -45,13 +45,19 @@ alloy fmt config.alloy
 
 
 # Systemd
+Note that "CONFIG_FILE" can also be a directory. From `alloy run --help`:
+
+> If path is a directory, all *.alloy files in that directory will be combined
+into a single unit. Subdirectories are not recursively searched for further
+merging.
+
 ```sh
 # tell systemd to start alloy with our env
 mkdir -p /etc/systemd/system/alloy.service.d/
 cat <<EOF > /etc/systemd/system/alloy.service.d/override.conf
 [Service]
 EnvironmentFile=/opt/alloy/.env
-Environment=CONFIG_FILE=/opt/alloy/config.alloy
+Environment=CONFIG_FILE=/opt/alloy/
 EOF
 
 

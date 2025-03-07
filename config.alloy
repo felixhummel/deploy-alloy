@@ -1,7 +1,3 @@
-logging {
-	level = "warn"
-}
-
 local.file_match "var_log" {
 	path_targets = [
 		{__path__ = "/var/log/**/*.log"},
@@ -12,20 +8,4 @@ local.file_match "var_log" {
 loki.source.file "system_logs" {
 	targets    = local.file_match.var_log.targets
 	forward_to = [loki.write.loki.receiver]
-}
-
-loki.write "loki" {
-	endpoint {
-		url = sys.env("LOKI_URL")
-
-		basic_auth {
-			username = sys.env("LOKI_BASIC_AUTH_USERNAME")
-			password = sys.env("LOKI_BASIC_AUTH_PASSWORD")
-		}
-	}
-
-	external_labels = {
-		instance = sys.env("INSTANCE"),
-		job      = "varlogs",
-	}
 }
