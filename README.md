@@ -25,7 +25,7 @@ cd /opt/alloy
 # set your loki instance data
 cat <<EOF > .env
 INSTANCE=$HOSTNAME
-LOKI_URL=https://loki.example.com/loki/api/v1/push
+LOKI_URL=https://loki.prom.0-main.de/loki/api/v1/push
 LOKI_BASIC_AUTH_USERNAME=alice
 LOKI_BASIC_AUTH_PASSWORD=xxxxxxxxxxxxxxx
 EOF
