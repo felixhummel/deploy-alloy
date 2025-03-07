@@ -19,8 +19,8 @@ cd ~/1-provision/
 ```sh
 sudo -i
 
-git clone https://github.com/felixhummel/deploy-alloy /opt/deploy-alloy
-cd /opt/deploy-alloy
+git clone https://github.com/felixhummel/deploy-alloy /opt/alloy
+cd /opt/alloy
 
 # set your loki instance data
 cat <<EOF > .env
@@ -50,8 +50,8 @@ alloy fmt config.alloy
 mkdir -p /etc/systemd/system/alloy.service.d/
 cat <<EOF > /etc/systemd/system/alloy.service.d/override.conf
 [Service]
-EnvironmentFile=/opt/deploy-alloy/.env
-Environment=CONFIG_FILE=/opt/deploy-alloy/config.alloy
+EnvironmentFile=/opt/alloy/.env
+Environment=CONFIG_FILE=/opt/alloy/config.alloy
 EOF
 
 
