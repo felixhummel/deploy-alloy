@@ -13,13 +13,13 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout repository
-      uses: actions/checkout@v2
+      - name: Checkout repository
+        uses: actions/checkout@v2
 
-    - name: Install Alloy CLI
-      run: |
-        curl -fsSL https://raw.githubusercontent.com/felixhummel/provision/refs/heads/main/alloy | bash
+      - name: Install Alloy CLI
+        run: |
+          curl -fsSL https://raw.githubusercontent.com/felixhummel/provision/refs/heads/main/alloy | bash
 
-    - name: Run Alloy Format
-      run: |
-        alloy fmt config.alloy
+      - name: Run Alloy Format
+        run: |
+          bash -x bin/ci/alloy-fmt.sh
